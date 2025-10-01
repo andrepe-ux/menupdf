@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aplicação Interna de PDF's</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Fonte estilizada para o logo Mercadona */
+    .logo-text {
+      font-family: 'Arial Black', Arial, sans-serif;
+      color: #228B22; /* verde Mercadona */
+      font-size: 2.5rem;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+
+  <div class="max-w-md w-full text-center bg-white shadow-lg rounded-2xl p-8">
+    
+    <!-- Logo Mercadona -->
+    <div class="mb-6">
+      <span class="logo-text">Mercadona</span>
+    </div>
+
+    <!-- Título da aplicação -->
+    <h1 class="text-xl font-semibold text-gray-700 mb-6" id="titulo">
+      Aplicação Interna de PDF's
+    </h1>
+
+    <!-- Seletor de idioma -->
+    <div class="flex justify-center mb-6">
+      <label for="idioma" class="text-gray-600 mr-2">Idioma:</label>
+      <select id="idioma" class="p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400">
+        <option value="pt">Português</option>
+        <option value="es">Español</option>
+      </select>
+    </div>
+
+    <!-- Botões -->
+    <div class="space-y-4">
+      <a href="https://andrepe-ux.github.io/andre/" target="_blank"
+         class="block w-full bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-3 rounded-xl transition">
+        <span id="btnJuntar">Juntar PDF</span>
+      </a>
+      <a href="https://andrepe-ux.github.io/Separa_PDF/" target="_blank"
+         class="block w-full bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-3 rounded-xl transition">
+        <span id="btnSeparar">Separar PDF</span>
+      </a>
+    </div>
+
+  </div>
+
+  <!-- Script para alternar idioma -->
+  <script>
+    const idioma = document.getElementById("idioma");
+    const titulo = document.getElementById("titulo");
+    const btnJuntar = document.getElementById("btnJuntar");
+    const btnSeparar = document.getElementById("btnSeparar");
+
+    const traducoes = {
+      pt: {
+        titulo: "Aplicação Interna de PDF's",
+        juntar: "Juntar PDF",
+        separar: "Separar PDF"
+      },
+      es: {
+        titulo: "Aplicación Interna de PDF's",
+        juntar: "Unir PDF",
+        separar: "Separar PDF"
+      }
+    };
+
+    idioma.addEventListener("change", () => {
+      const lang = idioma.value;
+      titulo.textContent = traducoes[lang].titulo;
+      btnJuntar.textContent = traducoes[lang].juntar;
+      btnSeparar.textContent = traducoes[lang].separar;
+    });
+  </script>
+
+</body>
+</html>
