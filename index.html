@@ -5,8 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aplicação Interna de PDF's</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
   <style>
-    /* Fonte estilizada para o logo Mercadona */
     .logo-text {
       font-family: 'Arial Black', Arial, sans-serif;
       color: #228B22; /* verde Mercadona */
@@ -40,12 +41,19 @@
     <!-- Botões -->
     <div class="space-y-4">
       <a href="https://andrepe-ux.github.io/andre/" target="_blank"
-         class="block w-full bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-3 rounded-xl transition">
+         class="flex items-center justify-center gap-2 w-full bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-3 rounded-xl transition">
+        <i data-lucide="file-plus" class="w-5 h-5"></i>
         <span id="btnJuntar">Juntar PDF</span>
       </a>
       <a href="https://andrepe-ux.github.io/Separa_PDF/" target="_blank"
-         class="block w-full bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-3 rounded-xl transition">
+         class="flex items-center justify-center gap-2 w-full bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-3 rounded-xl transition">
+        <i data-lucide="scissors" class="w-5 h-5"></i>
         <span id="btnSeparar">Separar PDF</span>
+      </a>
+      <a href="https://andrepe-ux.github.io/imagemtopdf/" target="_blank"
+         class="flex items-center justify-center gap-2 w-full bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-3 rounded-xl transition">
+        <i data-lucide="image" class="w-5 h-5"></i>
+        <span id="btnImagem">Imagem para PDF</span>
       </a>
     </div>
 
@@ -57,17 +65,20 @@
     const titulo = document.getElementById("titulo");
     const btnJuntar = document.getElementById("btnJuntar");
     const btnSeparar = document.getElementById("btnSeparar");
+    const btnImagem = document.getElementById("btnImagem");
 
     const traducoes = {
       pt: {
         titulo: "Aplicação Interna de PDF's",
         juntar: "Juntar PDF",
-        separar: "Separar PDF"
+        separar: "Separar PDF",
+        imagem: "Imagem para PDF"
       },
       es: {
         titulo: "Aplicación Interna de PDF's",
         juntar: "Unir PDF",
-        separar: "Separar PDF"
+        separar: "Separar PDF",
+        imagem: "Imagen a PDF"
       }
     };
 
@@ -76,7 +87,11 @@
       titulo.textContent = traducoes[lang].titulo;
       btnJuntar.textContent = traducoes[lang].juntar;
       btnSeparar.textContent = traducoes[lang].separar;
+      btnImagem.textContent = traducoes[lang].imagem;
     });
+
+    // Inicializa os ícones Lucide
+    lucide.createIcons();
   </script>
 
 </body>
