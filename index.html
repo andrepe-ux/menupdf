@@ -4,81 +4,122 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aplicação de PDF's</title>
+
+  <!-- TailwindCSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
   <style>
-    /* Fonte estilizada para o logo Mercadona */
     .logo-text {
       font-family: 'Arial Black', Arial, sans-serif;
-      color: #228B22; /* verde Mercadona */
+      color: #228B22;
       font-size: 2.5rem;
+    }
+
+    /* Botões no estilo original sem @apply */
+    .button {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem; /* equivalente a gap-3 */
+      width: 100%;
+      background-color: #D1D5DB; /* bg-gray-300 */
+      color: #1F2937; /* text-gray-800 */
+      font-weight: 600; /* font-semibold */
+      padding: 0.75rem 1rem; /* py-3 px-4 */
+      border-radius: 0.5rem; /* rounded-lg */
+      transition: background-color 0.3s;
+      text-decoration: none;
+    }
+
+    .button:hover {
+      background-color: #9CA3AF; /* bg-gray-400 */
     }
   </style>
 </head>
 <body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
 
-  <div class="max-w-md w-full text-center bg-white shadow-lg rounded-2xl p-8">
-    
+  <main class="max-w-md w-full text-center bg-white shadow-lg rounded-2xl p-8">
+
     <!-- Logo Mercadona -->
     <div class="mb-6">
       <span class="logo-text">Mercadona</span>
     </div>
 
     <!-- Título da aplicação -->
-    <h1 class="text-xl font-semibold text-gray-700 mb-6" id="titulo">
+    <h1 class="text-2xl font-semibold text-gray-700 mb-6" id="titulo">
       Aplicação de PDF's
     </h1>
 
     <!-- Seletor de idioma -->
     <div class="flex justify-center mb-6">
       <label for="idioma" class="text-gray-600 mr-2">Idioma:</label>
-      <select id="idioma" class="p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400">
+      <select id="idioma" class="p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 transition">
         <option value="pt">Português</option>
         <option value="es">Español</option>
       </select>
     </div>
 
-    <!-- Botões -->
-    <div class="space-y-4">
-      <a href="https://andrepe-ux.github.io/andre/" target="_blank"
-         class="block w-full bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-3 rounded-xl transition">
+    <!-- Botões estilo lista -->
+    <div class="space-y-3">
+      <a href="https://andrepe-ux.github.io/andre/" target="_blank" class="button" aria-label="Juntar PDF">
+        <i data-lucide="file-plus" class="w-5 h-5"></i>
         <span id="btnJuntar">Juntar PDF</span>
       </a>
-      <a href="https://andrepe-ux.github.io/Separa_PDF/" target="_blank"
-         class="block w-full bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-3 rounded-xl transition">
+      <a href="https://andrepe-ux.github.io/Separa_PDF/" target="_blank" class="button" aria-label="Separar PDF">
+        <i data-lucide="scissors" class="w-5 h-5"></i>
         <span id="btnSeparar">Separar PDF</span>
+      </a>
+      <a href="https://andrepe-ux.github.io/imagemtopdf/" target="_blank" class="button" aria-label="Imagem para PDF">
+        <i data-lucide="image" class="w-5 h-5"></i>
+        <span id="btnImagem">Imagem para PDF</span>
+      </a>
+      <a href="https://andrepe-ux.github.io/splitpdf/" target="_blank" class="button" aria-label="Organizador de PDF's">
+        <i data-lucide="layers" class="w-5 h-5"></i>
+        <span id="btnOrganizador">Organizador de PDF's</span>
       </a>
     </div>
 
-  </div>
+  </main>
 
-  <!-- Script para alternar idioma -->
   <script>
     const idioma = document.getElementById("idioma");
-    const titulo = document.getElementById("titulo");
-    const btnJuntar = document.getElementById("btnJuntar");
-    const btnSeparar = document.getElementById("btnSeparar");
+    const elementos = {
+      titulo: document.getElementById("titulo"),
+      btnJuntar: document.getElementById("btnJuntar"),
+      btnSeparar: document.getElementById("btnSeparar"),
+      btnImagem: document.getElementById("btnImagem"),
+      btnOrganizador: document.getElementById("btnOrganizador")
+    };
 
     const traducoes = {
       pt: {
-        titulo: "Aplicação Interna de PDF's",
-        juntar: "Juntar PDF",
-        separar: "Separar PDF"
+        titulo: "Aplicação de PDF's",
+        btnJuntar: "Juntar PDF",
+        btnSeparar: "Separar PDF",
+        btnImagem: "Imagem para PDF",
+        btnOrganizador: "Organizador de PDF's"
       },
       es: {
-        titulo: "Aplicación Interna de PDF's",
-        juntar: "Unir PDF",
-        separar: "Separar PDF"
+        titulo: "Aplicación de PDF's",
+        btnJuntar: "Unir PDF",
+        btnSeparar: "Separar PDF",
+        btnImagem: "Imagen a PDF",
+        btnOrganizador: "Organizador de PDF"
       }
     };
 
     idioma.addEventListener("change", () => {
       const lang = idioma.value;
-      titulo.textContent = traducoes[lang].titulo;
-      btnJuntar.textContent = traducoes[lang].juntar;
-      btnSeparar.textContent = traducoes[lang].separar;
+      for (const key in elementos) {
+        elementos[key].textContent = traducoes[lang][key];
+      }
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      lucide.createIcons();
     });
   </script>
 
 </body>
 </html>
-
